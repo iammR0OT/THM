@@ -68,9 +68,11 @@ $ redis-cli -h 10.10.249.173
 $ INFO
 ```
 <img src="https://i.imgur.com/gV8yaIu.png">
-Quick Google Search reveals that this version is vulnerable to command injection. You can learn more about it [here](http://michalszalkowski.com/security/pentesting-ports/6379-redis/)  (R2)
+
+Quick Google Search reveals that this version is vulnerable to command injection. You can learn more about it [here]([https://revshells.com](https://michalszalkowski.com/security/pentesting-ports/6379-redis))  (R2)
 
 <img src="https://i.imgur.com/blJKAx8.png">
+
 ### Redis Exploitation
 
 Using redis vulnerability we can also steal the NTLM hash of current user. To steal the NTLM hash, we first need to run Responder.
@@ -99,6 +101,7 @@ $ hashcat -m 5600 enter-prise.hash /usr/share/seclists/Passwords/Leaked-Database
 
 Here: 
 - **-m** for mode and 5600 is a mode for NTLMv2 hash.
+
 <img src="https://i.imgur.com/6vtYG5T.png">
 
 ### SMB Share Access
@@ -113,6 +116,7 @@ Here:
 - **-H** for host IP address.
 - **-u** for user name.
 - **-p** for Password.
+  
 <img src="https://i.imgur.com/1Oy4cNg.png">
  
 We can access these shares using **smbclient**.
@@ -122,6 +126,7 @@ $ smbclient \\\\10.10.155.208\\Enterprise-Share -U 'vulnnet.local/enterprise-sec
 ````
 
 <img src="https://i.imgur.com/ssrm66l.png">
+
 We can downlead the **PurgeIrrelevantData_1826.ps1** file to our local file system using **get** command.
 
 ## Gaining Shell using PurgeIrrelevantData_1826.ps1
@@ -141,6 +146,7 @@ Here:
 - **-v** for verbosity.
 - **-n** to use numeric IP address not domain name.
 - **-p** for port number.
+  
 <img src="https://i.imgur.com/sIgkHIU.png">
 
 After some time, we got connection on our listener, the file **startup.bat** was responsible to giving us shell on the box.
